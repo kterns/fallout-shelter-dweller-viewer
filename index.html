@@ -21,23 +21,27 @@
 </head>
 
 <body ng-app="app">
-
+  
   <div class="container" ng-controller="appCtrl">
     <div class="page-header">
-      <h1>Fallout Shelter Dweller Viewer</h1>
+      <!--<h1>Fallout Shelter Dweller Viewer</h1>-->
+      <h2>
+        Fallout Shelter Dweller Viewer
+        <span class="small text-muted"> Demo project by Kyle Terns, developed with AngularJS and Bootstrap</span>
+      </h2>
     </div>
-
+    
     <div class="well">
       <p>
-        <span><strong>Step 1:</strong> Decrypt your save file to json using </span>
-        <a href="https://rakion99.github.io/shelter-editor/SaveDecrypt.html">Fallout Shelter Save Decryptor</a>
+        <span><strong>Step 1:</strong> Decrypt your save file to json using a </span>
+        <a href="https://rakion99.github.io/shelter-editor/SaveDecrypt.html" target="_blank">Fallout Shelter Save Decryptor</a>
         <span>.</span>
       </p>
       
       <p>
         <span><strong>Step 2:</strong> Choose the exported json file, then click Show Results. </span>
       </p>
-
+      
       <form class="form-inline">
         <div class="form-group">
           <div class="input-group">
@@ -45,125 +49,147 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" ng-click="show()">Show Results</button>
+          <button class="btn btn-primary" ng-click="show()" ng-disabled="noFile">Show Results</button>
         </div>
       </form>
     </div>
-
+    
     <hr>
-
+    
     <form>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-addon"><i class="fa fa-search"></i></div>
           <input type="text" class="form-control" placeholder="Enter search term(s)..." ng-model="searchDweller">
-        </div>
+        </div>      
       </div>
     </form>
-
+    
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>
             <a href="#" ng-click="sortType = 'serializeId'; sortReverse = !sortReverse">
-              ID
+              ID 
               <span ng-show="sortType == 'serializeId' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'serializeId' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-              Firstname
+              Firstname 
               <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
-              Lastname
+              Lastname 
               <span ng-show="sortType == 'lastName' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'lastName' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'experience.currentLevel'; sortReverse = !sortReverse">
-              Level
+              Level 
               <span ng-show="sortType == 'experience.currentLevel' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'experience.currentLevel' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
+            <a href="#" ng-click="sortType = 'health.maxHealth'; sortReverse = !sortReverse">
+              Max Health 
+              <span ng-show="sortType == 'health.maxHealth' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'health.maxHealth' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </th>
+          <th>
+            <a href="#" ng-click="sortType = 'rarity'; sortReverse = !sortReverse">
+              Rarity 
+              <span ng-show="sortType == 'rarity' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'rarity' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </th>
+          <th>
             <a href="#" ng-click="sortType = 'stats.stats[1].value'; sortReverse = !sortReverse">
-              S
+              S 
               <span ng-show="sortType == 'stats.stats[1].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[1].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[2].value'; sortReverse = !sortReverse">
-              P
+              P 
               <span ng-show="sortType == 'stats.stats[2].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[2].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[3].value'; sortReverse = !sortReverse">
-              E
+              E 
               <span ng-show="sortType == 'stats.stats[3].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[3].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[4].value'; sortReverse = !sortReverse">
-              C
+              C 
               <span ng-show="sortType == 'stats.stats[4].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[4].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[5].value'; sortReverse = !sortReverse">
-              I
+              I 
               <span ng-show="sortType == 'stats.stats[5].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[5].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[6].value'; sortReverse = !sortReverse">
-              A
+              A 
               <span ng-show="sortType == 'stats.stats[6].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[6].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
             <a href="#" ng-click="sortType = 'stats.stats[7].value'; sortReverse = !sortReverse">
-              L
+              L 
               <span ng-show="sortType == 'stats.stats[7].value' && !sortReverse" class="fa fa-caret-down"></span>
               <span ng-show="sortType == 'stats.stats[7].value' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
           <th>
-            <a href="#" ng-click="sortType = 'rarity'; sortReverse = !sortReverse">
-              Rarity
-              <span ng-show="sortType == 'rarity' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'rarity' && sortReverse" class="fa fa-caret-up"></span>
+            <a href="#" ng-click="sortType = 'savedRoom'; sortReverse = !sortReverse">
+              Room 
+              <span ng-show="sortType == 'savedRoom' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'savedRoom' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </th>
-          <th>
-            <a href="#" ng-click="sortType = 'health.maxHealth'; sortReverse = !sortReverse">
-              Max Health
-              <span ng-show="sortType == 'health.maxHealth' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'health.maxHealth' && sortReverse" class="fa fa-caret-up"></span>
-            </a>
-          </th>
+          <!--<th>-->
+          <!--  RoomId-->
+          <!--</th>-->
+          <!--<th>-->
+          <!--  RoomLevel-->
+          <!--</th>-->
+          
+          <!--<th ng-repeat="field in fields">-->
+          <!--  <a href="#" ng-click="sortType = 'field.name'; sortReverse = !sortReverse">{{ field.displayName }}-->
+          <!--    <span ng-show="sortType == 'field.name' && !sortReverse" class="fa fa-caret-down"></span>-->
+          <!--    <span ng-show="sortType == 'field.name' && sortReverse" class="fa fa-caret-up"></span>-->
+          <!--  </a>-->
+          <!--</th>-->
+          
         </tr>
       </thead>
-      <!--<tbody ng-repeat="dweller in dwellers | orderBy : '-health.maxHealth'">-->
       <tbody>
         <tr ng-repeat="dweller in dwellers | orderBy:sortType:sortReverse | filter:searchDweller">
           <td>{{ dweller.serializeId }}</td>
           <td>{{ dweller.name }}</td>
           <td>{{ dweller.lastName }}</td>
           <td>{{ dweller.experience.currentLevel }}</td>
+          <td>{{ dweller.health.maxHealth }}</td>
+          <td>{{ dweller.rarity }}</td>
           <td>{{ dweller.stats.stats[1].value }}</td>
           <td>{{ dweller.stats.stats[2].value }}</td>
           <td>{{ dweller.stats.stats[3].value }}</td>
@@ -171,12 +197,15 @@
           <td>{{ dweller.stats.stats[5].value }}</td>
           <td>{{ dweller.stats.stats[6].value }}</td>
           <td>{{ dweller.stats.stats[7].value }}</td>
-          <td>{{ dweller.rarity }}</td>
-          <td>{{ dweller.health.maxHealth }}</td>
+          <td>{{ getRoom(dweller.savedRoom) }}</td>
+          <!--<td>{{ dweller.savedRoom }}</td>-->
+          <!--<td>{{ getRoomLevel(dweller.savedRoom) }}</td>-->
         </tr>
       </tbody>
     </table>
+    
   </div>
+
 
   <!-- SCRIPTS -->
 
