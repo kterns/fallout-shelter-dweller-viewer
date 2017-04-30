@@ -51,6 +51,8 @@ app.controller('appCtrl', ['$scope', function($scope) {
   $scope.sortReverse = false;
   $scope.searchDweller = '';
   $scope.noFile = true;
+  
+  $scope.results = false;
 
   $scope.load = function() {
  	    
