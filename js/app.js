@@ -100,6 +100,18 @@ app.controller('appCtrl', ['$scope', function($scope) {
     // return roomId != -1 ? room[0].type : "Exploring";
   };
   
+  $scope.getRoomFloor = function(roomId) {
+    var room = $scope.rooms.filter(
+      function(data) {
+        return data.deserializeID == roomId;
+      }
+    );
+    
+    if(roomId != -1) {
+      return room[0].row + 1;
+    }
+  };
+  
   $scope.getRoomLevel = function(roomId) {
     var room = $scope.rooms.filter(
       function(data) {
@@ -108,7 +120,7 @@ app.controller('appCtrl', ['$scope', function($scope) {
     );
     
     return room[0].level;
-  }
+  };
   
   $scope.show = function() {
     $scope.dwellers = $scope.resource.dwellers.dwellers;

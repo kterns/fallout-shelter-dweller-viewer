@@ -169,6 +169,13 @@
                 <span ng-show="sortType == 'savedRoom' && sortReverse" class="fa fa-caret-up"></span>
               </a>
             </th>
+            <th>
+              <a href="#" ng-click="sortType = 'savedRoom'; sortReverse = !sortReverse">
+                Floor 
+                <span ng-show="sortType == 'savedRoom' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'savedRoom' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </th>
             <!--<th>-->
             <!--  RoomId-->
             <!--</th>-->
@@ -201,6 +208,7 @@
             <td>{{ dweller.stats.stats[6].value }}</td>
             <td>{{ dweller.stats.stats[7].value }}</td>
             <td>{{ getRoom(dweller.savedRoom) }}</td>
+            <td>{{ getRoomFloor(dweller.savedRoom) }}</td>
             <!--<td>{{ dweller.savedRoom }}</td>-->
             <!--<td>{{ getRoomLevel(dweller.savedRoom) }}</td>-->
           </tr>
